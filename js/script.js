@@ -7,28 +7,28 @@ var questions = [{
         choice2: "curly brackets",
         choice3: "parenthesis",
         choice4: "square brackets",
-        correct: "3"
+        correct: "parenthesis"
     }, {
         question: "Arrays in javaScript can be used to store ________. ",
         choice1: "numbers and string",
         choice2: "other arrays",
         choice3: "booleans",
         choice4: "all of the above",
-        correct: "3"
+        correct: "booleans"
     }, {
         question: "string values must be enclosed within ________ when being assigned to variable.",
         choice1: "commas",
         choice2: "curly brackets",
         choice3: "quotes",
         choice4: "parenthesis",
-        correct: "2"
+        correct: "curly brakets"
     }, {
         question: "A very useful tool used during development and debugging for printing content to the debugger is:",
         choice1: "javascript",
         choice2: "terminal/bash",
         choice3: "for loops",
         choice4: "consol.log",
-        correct: "3"
+        correct: "for loops"
     },
     {
         question: "Commonly used data types Do Not include:",
@@ -36,17 +36,71 @@ var questions = [{
         choice2: "booleans",
         choice3: "alert",
         choice4: "numbers",
-        correct: "2"
+        correct: "alert"
     },
 ];
 
+function highScore() {
 
-var score = 75;
+}
+
+
+
+
+
+
+
+
+// // TODO: Create a variable to keep track of the 
+// var score = 0;
+// // TODO: Iterate over the questions array and display each question in a confirmation box
+// for (let i = 0; i < questions.length; i++) {
+//     var currentQuestion = questions[i];
+//     var usersAnswer = confirm(currentQuestion.question);
+//     // TODO: Check the user's answer against the correct answer
+//     if (usersAnswer === currentQuestion.answer) {
+//         alert('correct');
+//         score++;
+//     } else {
+//         alert('wrong!');
+//     }
+//     // TODO: Alert the user if they are correct or wrong. Increment the score accordingly
+//     // TODO: At the end of the game, alert the user with the final score
+// }
+// // String interpolation
+// alert(`Your final score is ${score}`);
+
+
+
+
+
+
+
+
+
+
+
+
+//1000 will  run it every 1 second
+var counter;
+var count = 75
+var cou
+
+function time() {
+    count = count - 1;
+    if (count <= 0) {
+        clearInterval(counter);
+        return;
+    }
+    document.getElementById("time").innerHTML = "Time:" + count
+}
+
+
 
 
 function submitAnswer() {
-    var answer = this.event.target.dataset.answer
-
+    var answer = this.event.target.textContent
+    console.log(answer)
     if (answer != questions[corentQuestion].correct) {
         console.log("wrong")
     } else {
@@ -56,129 +110,76 @@ function submitAnswer() {
 }
 
 var btnHandler = function() {
-
+    counter = setInterval(time, 1000);
     // event.preventDefault();
     document.querySelector("#start").style.display = "none";
 
 
     createQuestion(questions[0])
+
 };
 
-function createQuestion(question) {
-    console.log(question)
+function createQuestion() {
+
     var questionEl = document.createElement("div");
 
     mainEl.appendChild(questionEl);
     var heading = document.createElement("h1");
 
     //set title
-    heading.textContent = "commonly used data types Do Not Include:";
+    heading.textContent = questions[corentQuestion].question;
     questionEl.appendChild(heading);
+
 
     //set first botton
     var answerOne = document.createElement("button");
     answerOne.setAttribute("onclick", "submitAnswer()")
-    answerOne.dataset.answer = 1 // "3"
-    answerOne.textContent = question.choice1;
+    answerOne.dataset.answer = questions[corentQuestion].correct;
+    answerOne.textContent = questions[corentQuestion].choice1;
     questionEl.appendChild(answerOne).style.backgroundColor = "blueviolet";
     questionEl.appendChild(answerOne).style.color = "white";
+    questionEl.appendChild(answerOne).style.padding = "20px 30px";
+
+
 
     //set second botton
     var answerTwo = document.createElement("button");
     answerTwo.setAttribute("onclick", "submitAnswer()")
-    answerTwo.dataset.answer = 2
-    answerTwo.textContent = question.choice2;
+    answerTwo.dataset.answer = questions[corentQuestion].correct
+    answerTwo.textContent = questions[corentQuestion].choice2
     questionEl.appendChild(answerTwo).style.backgroundColor = "blueviolet";
     questionEl.appendChild(answerTwo).style.color = "white";
+    questionEl.appendChild(answerTwo).style.padding = "20px 30px";
+
 
     //set therd botton
     var answerThree = document.createElement("button");
     answerThree.setAttribute("onclick", "submitAnswer()")
-    answerThree.dataset.answer = 3
-    answerThree.textContent = question.choice3;
+    answerThree.dataset.answer = questions[corentQuestion].correct
+    answerThree.textContent = questions[corentQuestion].choice3;
     questionEl.appendChild(answerThree).style.backgroundColor = "blueviolet";
     questionEl.appendChild(answerThree).style.color = "white";
+    questionEl.appendChild(answerThree).style.padding = "20px 30px";
+
 
     //set forth botton
     var answerFour = document.createElement("button");
     answerFour.setAttribute("onclick", "submitAnswer()")
-    answerFour.dataset.answer = 4
-    answerFour.textContent = question.choice4;
+    answerFour.dataset.answer = questions[corentQuestion].correct
+    answerFour.textContent = questions[corentQuestion].choice4;
     questionEl.appendChild(answerFour).style.backgroundColor = "blueviolet";
     questionEl.appendChild(answerFour).style.color = "white";
+    questionEl.appendChild(answerFour).style.padding = "20px 30px";
+
 
 
 }
 
-
-
-
-
 btnEl.addEventListener("click", btnHandler);
+var form = document.getElementById('initials');
+form.onsubmit = function() {
+    e.preventDefault();
 
 
 
-
-
-// var total_seconds = 30 * 1;
-// var c_minutes = parseInt(total_seconds / 60);
-// var c_seconds = parseInt(total_seconds % 60);
-// var timer;
-
-// function CheckTime() {
-//     document.getElementById("quiz-time-left").innerHTML = 'Time Left: ' + c_minutes + ' minutes ' + c_seconds + ' seconds ';
-
-//     if (total_seconds <= 0) {
-//         score();
-//     } else {
-//         total_seconds = total_seconds - 1;
-//         c_minutes = parseInt(total_seconds / 60);
-//         c_seconds = parseInt(total_seconds % 60);
-//         timer = setTimeout(CheckTime, 1000);
-//     }
-// }
-// timer = setTimeout(CheckTime, 1000);
-
-// function score() {
-//     // stop timer
-//     clearInterval(timer);
-
-//     //Referencing the value of the questions
-//     var q1 = document.forms.form.q1.value;
-//     var q2 = document.forms.form.q2.value;
-//     var q3 = document.forms.form.q3.value;
-
-//     // disable form
-//     var elements = document.getElementById("questions").elements;
-//     for (var i = 0, len = elements.length; i < len; ++i) {
-//         elements[i].disabled = true;
-//     }
-
-//     //Array for the questions
-//     var questions = [q1, q2, q3];
-
-//     //Answers for each question
-//     var answers = ["b", "b", "b"];
-
-//     //variable to keep track of the points
-//     var points = 0;
-//     var total = 3;
-//     //max score 
-
-//     //Making use of a for loop to iterate over the questions and answers arrays
-//     for (var i = 0; i < total; i++) {
-//         if (questions[i] == answers[i]) {
-//             points = points + 1; //Increment the score by 2 for every correct answer given
-//         }
-//     }
-
-//     //CSS for questions
-//     var q = document.getElementById("p");
-
-//     q.style.fontSize = "40px";
-//     q.style.textAlign = "center";
-//     q.innerHTML = "You got " + points + " out of " + total +
-//         "<br />" +
-//         "you used " + (29 - Math.floor(total_seconds)) + " seconds";
-
-//     return false;
+};
